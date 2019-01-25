@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h2{
+            color:red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>1,获取各种变量的值</h2>
+    <h3>获取整数: {{ age }}</h3>
+    <h3>获取字符串: {{ name + "world"}}</h3>
+    {# 可以通过变量.索引值 来获取内容 #}
+    <h3>获取元祖: {{ tuple }}, 分开获取内容,{{ tuple[0] }}, {{ tuple.1 }}</h3>
+    <h3>获取列表: {{ list }} 分开获取内容,{{ list.0 }}, {{ list.1 }}</h3>
+    <h3>获取字典: {{ dict }} 分开获取内容, {{ dict["name"] }} , {{ dict.age }}</h3>
+
+
+    <h2>2,遍历元祖的所有元素</h2>
+    {% for item in tuple %}
+
+        {# 判断偶数 #}
+        {% if item %2 == 0 %}
+            <li>{{ item }}</li>
+        {% endif %}
+
+    {% endfor %}
+
+    <h2>3,遍历字典</h2>
+    {% for key in dict %}
+        {# 如果dict.key, 会将key当成一个字符串,  如果dict[key],那么该key是一个变量 #}
+        <li> {{ key }} = {{ dict[key] }}</li>
+    {% endfor %}
+
+
+
+
+</body>
+</html>

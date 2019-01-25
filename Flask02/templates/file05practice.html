@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {# 遍历数据 #}
+    {# item.id不等于5,才遍历 #}
+    {% for item in my_list if item.id != 5%}
+
+        {# 方式一 #}
+      {% if item.id == 1 %}
+           <li style="background: yellow"> {{ item.value }} </li>
+       {% elif item.id ==2 %}
+           <li style="background: green"> {{ item.value }} </li>
+      {% elif item.id ==3 %}
+           <li style="background: red"> {{ item.value }} </li>
+       {% elif item.id ==4 %}
+            <li style="background: purple"> {{ item.value }} </li>
+      {% else %}
+
+      {% endif %}
+
+        {# 方式二 #}
+
+        {# 思考: 使用自定义过滤器实现 #}
+
+    {% endfor %}
+
+
+</body>
+</html>

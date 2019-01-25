@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+    {# 遍历数据 #}
+    {# item.id不等于5,才遍历 #}
+    {% for item in my_list if item.id != 5%}
+
+        {# 思考: 使用自定义过滤器实现 #}
+        <li style="background: {{ loop.index | my_filter}}">{{ item.value }}</li>
+
+    {% endfor %}
+
+
+</body>
+</html>

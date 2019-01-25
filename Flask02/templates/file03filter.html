@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h2{
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>1,字符串过滤器</h2>
+    safe：禁用转义,可以正常渲染标签
+    <p>{{ '<em>hello</em>' | safe }}</p>
+
+    capitalize：把变量值的首字母转成大写，其余字母转小写
+    <p>{{ 'hello PYTHON' | capitalize }}</p>
+
+    lower：把值转成小写
+    <p>{{ 'HELLO PYTHON 你好' | lower }}</p>
+
+    upper：把值转成大写
+    <p>{{ 'hello 你好 PYTHOn' | upper }}</p>
+
+    title：把值中的每个单词的首字母都转成大写
+    <p>{{ 'hello python java IOS' | title }}</p>
+
+    reverse：字符串反转
+    <p>{{ '我爱你' | reverse }}</p>
+
+    format：格式化输出
+    <p>{{ '%s is %d' | format('name',17) }}</p>
+
+    striptags：渲染之前把值中所有的HTML标签都删掉
+    <p>{{ '<h1>hello</h1>' | striptags }}</p>
+
+    <h2>2,列表过滤器</h2>
+    first：取第一个元素
+    <p>{{ [1,2,3,4,5,6] | first }}</p>
+
+    last：取最后一个元素
+    <p>{{ [1,2,3,4,5,6] | last }}</p>
+
+    length：获取列表长度
+    <p>{{ [1,2,3,4,5,6] | length }}</p>
+
+    sum：列表求和
+    <p>{{ [1,2,3,4,5,6] | sum }}</p>
+
+    sort：列表排序(默认是升序)
+    <p>{{ [6,2,3,1,5,4] | sort }}</p>
+
+    <h2>3,链式调用</h2>
+    <p>{{ [6,2,3,1,5,4] | sort | first}}</p>
+    <p>{{ 'hello python java IOS' | title | reverse | reverse}}</p>
+
+</body>
+</html>
