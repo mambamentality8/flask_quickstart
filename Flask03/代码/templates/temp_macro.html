@@ -1,0 +1,5 @@
+{% macro func(type=type,size=size) %}
+<p>用户：<input type="{{ type }}" name="User" placeholder="USER" size="{{ size }}"></p>
+<p>密码：<input type="{{ type }}" name="Password" placeholder="PASSWORD" size="{{ size }}"></p>
+<input type="submit">
+{% endmacro %}

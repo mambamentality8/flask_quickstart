@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正常网站__转账页面</title>
+</head>
+<body>
+<h1>我是网站A，转账页面</h1>
+
+<form method="post">
+     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>账户：</label><input type="text" name="to_account" placeholder="请输入要转账的账户"><br/>
+    <label>金额：</label><input type="number" name="money" placeholder="请输入转账金额"><br/>
+    <input type="submit" value="转账">
+</form>
+
+</body>
+</html>

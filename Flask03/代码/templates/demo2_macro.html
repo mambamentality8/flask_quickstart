@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ request.method }}</title>
+</head>
+<body>
+{# 登录表单 #}
+<p>用户：<input type="text" name="User" placeholder="USER" size="35"></p>
+<p>密码：<input type="password" name="Password" placeholder="PASSWORD" size="35"></p>
+<input type="submit">
+<hr>
+{# 宏的形式实现表单 #}
+{% macro fun() %}
+<p>用户：<input type="text" name="User" placeholder="USER" size="35"></p>
+<p>密码：<input type="password" name="Password" placeholder="PASSWORD" size="35"></p>
+<input type="submit">
+{% endmacro %}
+{# 宏的调用，代码的扩展性不强 #}
+{{ fun() }}
+<hr>
+{# 给宏传入参数 #}
+{% macro func(type=type,size=size) %}
+<p>用户：<input type="{{ type }}" name="User" placeholder="USER" size="{{ size }}"></p>
+<p>密码：<input type="{{ type }}" name="Password" placeholder="PASSWORD" size="{{ size }}"></p>
+<input type="submit">
+{% endmacro %}
+{# 调用宏并传入参数 #}
+{{ func(type='password',size=20) }}
+
+<hr>
+{# 导入宏，调用宏并传入参数,导入时必须要使用as #}
+{% import 'temp_macro.html' as f %}
+{# 调用宏，首先使用as别名 #}
+{{ f.func(type='text',size=60) }}
+
+
+</body>
+</html>
