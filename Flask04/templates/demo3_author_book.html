@@ -1,0 +1,26 @@
+<h1>作者书籍</h1>
+
+<form method="post">
+    {{ form.csrf_token }}
+    <p>作者： {{ form.wtf_auth }}</p>
+    <p>书籍： {{ form.wtf_book }}</p>
+    <p>{{ form.wtf_submit }}</p>
+
+
+</form>
+
+{# 接收视图传入的数据，渲染数据,遍历数据, #}
+
+
+<ul>
+    <li>{% for author in authors %}</li>
+    <li>{{ author }}</li> <a href="/del_author{{ author.id }}">删除</a>
+    <li>{% endfor %}</li>
+</ul>
+
+<ul>
+    <li>{% for book in books %}</li>
+    <li>{{ book }}</li> <a href="/del_book{{ book.id }}">删除</a>
+    <li>{% endfor %}</li>
+</ul>
+
