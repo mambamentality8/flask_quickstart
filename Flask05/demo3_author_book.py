@@ -5,12 +5,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField
 from wtforms.validators import DataRequired
+# http://127.0.0.1:5000/?a=1&b=2#使用path转换器匹配url中的特殊字符?#&=
+from werkzeug.routing import BaseConverter
 
 app = Flask(__name__)
+# 配置数据库的连接和动态追踪修改
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:mysql@localhost/author_book'
-# 动态追踪修改设置，如未设置只会提示警告
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-#该配置为True,则每次请求结束都会自动commit数据库的变动
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 app.config['SECRET_KEY'] = '0sEXJWcXTCmSk66w4rthfhp8oP4/8iY0eUUDTfDgGfAWecQBy30BDg=='
@@ -85,6 +86,7 @@ def index():
         except Exception as e:
             print(e)
             db.session.rollback() # 提交数据发生异常，进行回滚
+            return ''
         # 添加数据后，mysql中数据已经变化，需要再次查询
         try:
             authors = Author.query.all()
@@ -93,7 +95,7 @@ def index():
             print(e)
 
     # 把查询结果传入模板
-    return render_template('demo2_author_book.html',authors=authors,books=books,form=form)
+    return render_template('demo3_author_book.html',authors=authors,books=books,form=form)
 
 # 删除作者
 # 模板页面：<a href="/del_author{{ author.id }}">删除</a>
@@ -134,13 +136,13 @@ if __name__ == '__main__':
     db.drop_all()
     db.create_all()
     # 模拟添加数据
-    au_xi = Author(name='作者1')
-    au_qian = Author(name='作者2')
-    au_san = Author(name='作者3')
-    bk_xi = Book(info='书1')
-    bk_xi2 = Book(info='书2')
-    bk_qian = Book(info='书3')
-    bk_san = Book(info='书4')
+    au_xi = Author(name='我吃西红柿')
+    au_qian = Author(name='萧潜')
+    au_san = Author(name='唐家三少')
+    bk_xi = Book(info='吞噬星空')
+    bk_xi2 = Book(info='寸芒')
+    bk_qian = Book(info='飘渺之旅')
+    bk_san = Book(info='冰火魔厨')
     # 把数据提交给用户会话
     db.session.add_all([au_xi, au_qian, au_san, bk_xi, bk_xi2, bk_qian, bk_san])
     # 提交会话

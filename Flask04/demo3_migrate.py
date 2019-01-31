@@ -60,7 +60,7 @@ class User(db.Model):
     email = db.Column(db.String(64), unique=True)
     pswd = db.Column(db.String(32))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))  # 外键，指向roles表的主键id
-
+    phone = db.Column(db.String(64))
     # def __str__(self):
     #     return 'user:%s' % self.name
     def __repr__(self):
